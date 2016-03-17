@@ -7,32 +7,32 @@ define(['cartodb'], function() {
     var ecostLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (ecost)",
         data: [
-          { name: "Molt bona",          value: "#B81609" },
-          { name: "Bona",         value: "#FF6600" },
-          { name: "Moderada",         value: "#FFCC00" },
-          { name: "Mediocre",       value: "#33a02c" },
-          { name: "Pèssima",  value: "#5CA2D1" }
+          { name: "Molt bona", value: "#B81609" },
+          { name: "Bona", value: "#FF6600" },
+          { name: "Moderada", value: "#FFCC00" },
+          { name: "Mediocre", value: "#33a02c" },
+          { name: "Pèssima", value: "#5CA2D1" }
         ]
     });
     
     var condLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (cond)",
         data: [
-          { name: "Molt mineralitzades",          value: "#B81609" },
-          { name: "Mitjanament mineral.",         value: "#FFCC00" },
-          { name: "Poc mineralitzades",  value: "#5CA2D1" }
+          { name: "Molt mineralitzades", value: "#F03B20" },
+          { name: "Mitjanament mineral.", value: "#FEB24C" },
+          { name: "Poc mineralitzades", value: "#FFEDA0" }
         ]
     });
     
     var legends = {
         'cond': {
             cdbLegend: condLegend,
-            cartoCSS: '#estacions {      marker-fill-opacity: 0.9;      marker-line-color: #FFF;      marker-line-width: 1;      marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 10;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
+            cartoCSS: '#estacions{ marker-fill-opacity: 0.8;  marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;  marker-width: 10;  marker-fill: #FFEDA0; marker-allow-overlap: true;} #estacions [ cond <= 9550] { marker-fill: #F03B20; } #estacions [ cond <= 1356.5] { marker-fill: #FEB24C; } #estacions [ cond <= 580.5] { marker-fill: #FFEDA0; }',
             name: "Conductivitat"
         },
         'ecost': {
             cdbLegend: ecostLegend,
-            cartoCSS: '#estacions {      marker-fill-opacity: 0.9;      marker-line-color: #FFF;      marker-line-width: 1;      marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 10;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
+            cartoCSS: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 10;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
             name: "Ecostrimed",
             active: true
         }
@@ -46,13 +46,12 @@ define(['cartodb'], function() {
                 }
             });
         }
-        //legends[sym].cdbLegend.addTo("#legends");
-        //legends[sym].cdbLegend.render().el.remove();
+
         $('#legends').empty();
         $('#legends').append(legends[sym].cdbLegend.render().el);
     };
 
-    var createSwitcher = function(map, cssCallback, withLegend) {    
+    var createSwitcher = function(map, sublayer, withLegend) {    
         var switcher = L.control({position: "bottomright"});
         switcher.onAdd = function(map) {
             var combo = L.DomUtil.create( "div", "cssSelector");
@@ -70,8 +69,8 @@ define(['cartodb'], function() {
             
             $(sel).change(function() {
                 if(withLegend) showLegend(this.value);
-                cssCallback(legends[this.value].cartoCSS);
-            });                
+                sublayer.setCartoCSS(legends[this.value].cartoCSS);
+            }); 
             
             return combo;
         };
@@ -79,8 +78,8 @@ define(['cartodb'], function() {
     };
     
 	return {
-       createSwitcher: function(map, cb) {
-       		return createSwitcher(map, cb, true);
+       createSwitcher: function(map, sublayer, withLegend) {
+       		return createSwitcher(map, sublayer, withLegend);
        },
        createLegend: function(sym) {
        		return showLegend(sym);
