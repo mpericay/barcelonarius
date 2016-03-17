@@ -1,0 +1,51 @@
+body, html, #map {
+	height: 100%;
+	width: 100%;
+}
+
+#wrapper {
+    padding-left: 0;
+    padding-top: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    height: 100%;
+	width: 100%;
+}
+
+h3 {
+	text-align: center;
+}
+
+#sliderContainer {
+	position: absolute;
+	left: 2%;
+	bottom: 20px;
+	width: 95%;
+	background-color: #FFF;
+	padding: 20px;
+	border-radius: 15px;
+}
+
+.slider {
+	width: 100% !important;
+}
+
+/* Filters */
+#filters li {
+	margin: 25px 10px;
+}
+
+/* Overwrite CartoDB defaults */
+#legends div.cartodb-legend {
+	bottom: 115px;
+	right: 30px;
+	height: 120px;
+}
+
+/* Overwrite legend module: TODO refactor */
+.cssSelector {
+	bottom: 215px;
+	right: 20px;
+}

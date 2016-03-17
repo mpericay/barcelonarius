@@ -1,0 +1,26 @@
+{
+  "name": "barcelonarius",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mpericay/barcelonarius",
+  "authors": [
+    "Marti Pericay <marti@pericay.com>"
+  ],
+  "description": "Barcelona Rius",
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "require-css": "~0.1.8",
+    "requirejs": "~2.1.22",
+    "rangeslider-pure": "^0.3.7"
+  }
+}
