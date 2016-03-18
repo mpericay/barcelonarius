@@ -38,14 +38,15 @@ h3 {
 }
 
 /* Overwrite CartoDB defaults */
-#legends div.cartodb-legend {
-	bottom: 115px;
-	right: 30px;
-	height: 120px;
+div.cartodb-legend, div.cssSelector{
+	position: relative;
+	width: 180px;
+}
+.combolegend div.cartodb-legend {
+	right: auto;
 }
 
-/* Overwrite legend module: TODO refactor */
-.cssSelector {
-	bottom: 215px;
-	right: 20px;
+/* If we want to overwrite leaflet controls */
+.combolegend  {
+	margin-bottom: 10px !important;
 }
