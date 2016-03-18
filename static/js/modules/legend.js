@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['cartodb'], function() {
+define(['cartodb', 'select'], function() {
     "use strict";
 
     var ecostLegend = new cdb.geo.ui.Legend.Custom({
@@ -70,11 +70,19 @@ define(['cartodb'], function() {
             $(sel).change(function() {
                 if(withLegend) showLegend(this.value);
                 sublayer.setCartoCSS(legends[this.value].cartoCSS);
-            }); 
+                //sublayer.infowindow.set('template', legends[this.value].template);
+            });
+            
+            // make select responsive and mobile-friendly with https://silviomoreto.github.io/bootstrap-select/
+            $(sel).selectpicker({
+                style: 'btn-info',
+                size: 4
+            });
             
             return combo;
         };
         switcher.addTo(map);
+        
     };
     
 	return {
