@@ -30,7 +30,7 @@ define(['legend', 'cartodb'], function(legend) {
 	  sublayers: [{
 	    //sql: "SELECT e.estacio, e.cartodb_id,  e.the_geom_webmercator, b.ecostrimed, b.data FROM estacions e LEFT JOIN indexbio b ON e.estacio=b.estacio WHERE b.data < '2015-07-01'::date AND b.data > '2015-01-01'",
 		sql: "SELECT e.estacio, e.cartodb_id,  e.the_geom_webmercator, b.ecostrimed, b.data, f.cond FROM estacions e INNER JOIN indexbio b ON e.estacio=b.estacio INNER JOIN fq f ON e.estacio=f.estacio WHERE b.data < '2014-07-01'::date AND b.data > '2014-01-01'",
-	    cartocss: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-placement: point; marker-type: ellipse; marker-width: 10; marker-allow-overlap: true; } #estacions[ecostrimed=1] { marker-fill: #5CA2D1;} #estacions[ecostrimed=2] { marker-fill: #33a02c; } #estacions[ecostrimed=3] { marker-fill: #FFCC00; } #estacions[ecostrimed=4] { marker-fill: #FF6600; } #estacions[ecostrimed=5] { marker-fill: #B81609; } #estacions[ecostrimed=null] { marker-fill: #FFFFFF; }',
+	    cartocss: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-placement: point; marker-type: ellipse; marker-width: 12; marker-allow-overlap: true; } #estacions[ecostrimed=1] { marker-fill: #5CA2D1;} #estacions[ecostrimed=2] { marker-fill: #33a02c; } #estacions[ecostrimed=3] { marker-fill: #FFCC00; } #estacions[ecostrimed=4] { marker-fill: #FF6600; } #estacions[ecostrimed=5] { marker-fill: #B81609; } #estacions[ecostrimed=null] { marker-fill: #FFFFFF; }',
         interactivity: 'cartodb_id'
 	  }]
 	}).addTo(map)
@@ -48,36 +48,31 @@ define(['legend', 'cartodb'], function(legend) {
      });
      
      //create additional overlays
-     var hillshade2 =  L.tileLayer.wms("http://www.opengis.uab.cat/cgi-bin/world/MiraMon.cgi?", {
-		layers: 'glcc-world',
+     var conques =  L.tileLayer.wms("http://aca-web.gencat.cat/sig/wms/PUBLIC/CONQUES/Mapserver/WMSServer?", {
+		layers: 'Conques_principals',
 		format: 'image/png',
-		opacity: 0.40,
-		transparent: true,
+		transparent: true
 	});
 		
-	var temperature =  L.tileLayer.wms("http://spatial-dev.ala.org.au/geoserver/wms?", {
-		layers: 'worldclim_bio_5',
+	var depuradores =  L.tileLayer.wms("http://sima.gencat.cat/DMAH_ws/SIMA_OGC/MapServer/WMSServer?", {
+		layers: '2',
 		format: 'image/png',
-		opacity: 0.40,
-		transparent: true,
-		/*http://spatial-dev.ala.org.au/geoserver/wms?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=worldclim_bio_5*/
+		transparent: true
 	});
 		
-	var rain =  L.tileLayer.wms("http://spatial-dev.ala.org.au/geoserver/wms?", {
-		layers: 'worldclim_bio_12',
+	var rius =  L.tileLayer.wms("http://aca-web.gencat.cat/sig/wms/PUBLIC/CONQUES/MapServer/WMSServer?", {
+		layers: 'Xarxa_de_rius_principal',
 		format: 'image/png',
-		opacity: 0.40,
-		transparent: true,
-		/*http://spatial-dev.ala.org.au/geoserver/wms?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=worldclim_bio_12*/
-	});
+		transparent: true
+	}).addTo(map);
 	
 	
 	var overlayLayers = {
-		'Annual temperature': temperature,
-		'Annual rain': rain,
-		'Land Cover': hillshade2
+		'Rius': rius,
+		'Conques': conques,
+		'Depuradores': depuradores
 		};
 	
-	L.control.layers(baseLayers, null).addTo(map);	
+	L.control.layers(baseLayers, overlayLayers).addTo(map);	
 	
 });
