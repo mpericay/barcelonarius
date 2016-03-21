@@ -59,6 +59,13 @@ define(['legend', 'cartodb'], function(legend) {
 		format: 'image/png',
 		transparent: true
 	});
+	
+	var parcs =  L.tileLayer.wms("http://sima.gencat.cat/DMAH_ws/SIMA_OGC/MapServer/WMSServer?", {
+		layers: '12',
+		format: 'image/png',
+		opacity: 0.5,
+		transparent: true
+	});	
 		
 	var rius =  L.tileLayer.wms("http://aca-web.gencat.cat/sig/wms/PUBLIC/CONQUES/MapServer/WMSServer?", {
 		layers: 'Xarxa_de_rius_principal',
@@ -68,6 +75,7 @@ define(['legend', 'cartodb'], function(legend) {
 	
 	
 	var overlayLayers = {
+		'Parcs': parcs,
 		'Rius': rius,
 		'Conques': conques,
 		'Depuradores': depuradores
