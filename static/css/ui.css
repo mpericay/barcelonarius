@@ -20,11 +20,13 @@ h3 {
 
 #sliderContainer {
 	position: absolute;
-	left: 2%;
-	bottom: 20px;
-	width: 95%;
+	left: 0px;
+	bottom: 20px;	
 	background-color: #FFF;
 	padding: 20px;
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
 	border-radius: 15px;
 }
 
@@ -48,5 +50,5 @@ div.cartodb-legend, div.cssSelector{
 
 /* If we want to overwrite leaflet controls */
 .combolegend  {
-	margin-bottom: 10px !important;
+	margin-bottom: 100px !important;
 }
