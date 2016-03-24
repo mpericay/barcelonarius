@@ -23,7 +23,7 @@ h3 {
 	left: 0px;
 	bottom: 20px;	
 	background-color: #FFF;
-	padding: 20px;
+	padding: 10px 20px;
 	width: 96%;
 	margin-left: 2%;
 	margin-right: 2%;
@@ -32,6 +32,12 @@ h3 {
 
 .slider {
 	width: 100% !important;
+}
+
+.slider-handle.slider-handle-dry {
+    background-color: #974613;
+    background-image: -webkit-linear-gradient(top,#979613 0,#975613 100%);
+    background-image: -o-linear-gradient(top,#979613 0,#975613 100%);
 }
 
 /* Filters */
@@ -50,5 +56,5 @@ div.cartodb-legend, div.cssSelector{
 
 /* If we want to overwrite leaflet controls */
 .combolegend  {
-	margin-bottom: 100px !important;
+	margin-bottom: 80px !important;
 }

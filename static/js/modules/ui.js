@@ -29,7 +29,8 @@ define(['map', 'bootstrap', 'slider'], function() {
 	});
     
     slider.change(function() {
-        //if (isEven(this.value)) $(".slider-handle").css("background-color", "#F00");
+        if (isEven(this.value) && isEven(this.value/2)) $(".slider-handle").addClass("slider-handle-dry ");
+		else $(".slider-handle").removeClass("slider-handle-dry ");
     });
 	
 });
