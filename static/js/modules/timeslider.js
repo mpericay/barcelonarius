@@ -3,7 +3,7 @@
  */
 
 
-define(['map', 'bootstrap', 'slider'], function() {
+define(['slider'], function() {
 	
 	var moments = [
 		{

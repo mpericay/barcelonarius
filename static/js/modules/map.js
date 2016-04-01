@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['legend', 'cartodb'], function(legend) {
+define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend) {
 	
 	var map = L.map('map').setView([41.522, 1.866], 10);
 
@@ -37,12 +37,11 @@ define(['legend', 'cartodb'], function(legend) {
 	
 	.done(function(layer) {
 	     layer.setZIndex(7);
-		 legend.createSwitcher(map, layer.getSubLayer(0), true);
+		 var sublayer = layer.getSubLayer(0);
+		 legend.createSwitcher(map, sublayer, true);
 	     // info window
 	     // if we need a different template: http://requirejs.org/docs/download.html#text
-	     /*var sublayer = layer.getSubLayer(0);
-	     sublayer.infowindow.set('template', $('#infowindow_template').html());*/
-	     cdb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['ecostrimed', 'cond', 'data', 'cartodb_id']);
+	     cdb.vis.Vis.addInfowindow(map, sublayer, ['ecostrimed', 'cond', 'data', 'cartodb_id']);
      }).on('error', function(err) {
             console.log('cartoDBerror: ' + err);
      });
