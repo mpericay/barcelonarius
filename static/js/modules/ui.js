@@ -125,11 +125,13 @@ define(['map', 'bootstrap', 'slider'], function() {
 		}
 	];
 	
-	var tickArray = [0, 5, 10, 15, 20, 28];
+	var tickArray = [0, 6, 12, 18, 23, 28];
 	
+	var tickPositions = [];
 	var tickLabels = [];
 	tickArray.forEach(function(val) {
-		tickLabels.push(moments[val].year);	
+		tickLabels.push(moments[val].year);
+		tickPositions.push(val*100/tickArray[tickArray.length - 1]);
 	});
 	
 	var isDry = function(val) {
@@ -157,6 +159,7 @@ define(['map', 'bootstrap', 'slider'], function() {
 		step: 1,
 		ticks: tickArray,
 		ticks_labels: tickLabels,
+		ticks_positions: tickPositions,
 		ticks_snap_bounds: 0
 	});
     
