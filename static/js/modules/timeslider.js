@@ -118,14 +118,10 @@ define(['slider'], function() {
 		{
 			year: 2014,
 			dry: false
-		},
-		{
-			year: 2015,
-			dry: false
 		}
 	];
 	
-	var tickArray = [0, 6, 12, 18, 23, 28];
+	var tickArray = [0, 6, 12, 18, 23, 27];
 	
 	var tickPositions = [];
 	var tickLabels = [];
@@ -147,24 +143,33 @@ define(['slider'], function() {
 		else $(".slider-handle").removeClass("slider-handle-dry ");			
 		return message;		
     };
-    
-    var slider = $("#slider").slider({
-        formatter: function(value) {
-            return getTooltip(value);
-        },
-        tooltip: 'always',
-		min: 0,
-		max: moments.length - 1,
-		value: moments.length - 1,
-		step: 1,
-		ticks: tickArray,
-		ticks_labels: tickLabels,
-		ticks_positions: tickPositions,
-		ticks_snap_bounds: 0
-	});
-    
-    slider.change(function() {
-        
-    });
+	
+	var create = function(map, callback) {
+		
+		var slider = $("#slider").slider({
+			formatter: function(value) {
+				return getTooltip(value);
+			},
+			tooltip: 'always',
+			min: 0,
+			max: moments.length - 1,
+			value: moments.length - 1,
+			step: 1,
+			ticks: tickArray,
+			ticks_labels: tickLabels,
+			ticks_positions: tickPositions,
+			ticks_snap_bounds: 0
+		});
+		
+		slider.change(function() {
+			callback(moments[this.value].year);
+		});
+	};
+	
+	return {
+       create: function(map, callback) {
+       		return create(map, callback);
+       }
+	};
 	
 });
