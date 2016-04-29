@@ -27,7 +27,17 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 	var sql = "SELECT e.estacio, e.cartodb_id,  e.the_geom_webmercator, b.ecostrimed, b.data, f.cond FROM estacions e INNER JOIN indexbio b ON e.estacio=b.estacio INNER JOIN fq f ON e.estacio=f.estacio";
 		
 	var setYear = function(value) {
-		cartoSubLayer.setSQL(sql + " WHERE b.data < '" + value + "-07-01'::date AND b.data > '" + value + "-01-01'");
+		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
+			value = [value];
+		}
+		
+		var sqlWhere;
+		for(var i=0; i < value.length; i++) {
+			sqlWhere = sqlWhere ? sqlWhere + " OR " : " WHERE ";
+			sqlWhere += "b.data < '" + value[i] + "-07-01'::date AND b.data > '" + value[i] + "-01-01'";
+		}
+		
+		cartoSubLayer.setSQL(sql + sqlWhere);
 	};
 	    
 	// create a layer with 1 sublayer
