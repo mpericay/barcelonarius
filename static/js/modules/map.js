@@ -59,7 +59,11 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		 timeslider.create(map, setYear);
 	     // info window
 	     // if we need a different template: http://requirejs.org/docs/download.html#text
-	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, ['ecostrimed', 'cond', 'data', 'cartodb_id']);
+		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"><a href="#close" class="cartodb-popup-close-button close">x</a><div class="cartodb-popup-header"><div class="cover"><div id="spinner"></div><div class="image_not_found"> <i></i> <a href="#/map" class="help">Non-valid picture URL</a></div><span class="separator"></span><h1 class="order1">{{data}}</h1><div class="shadow"></div><img src="{{data}}" style="height:138px;display:inline" /></div></div><div class="cartodb-popup-content-wrapper"><div class="cartodb-popup-content"><h4>data</h4><p>{{data}}</p><h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>estacio</h4><p>{{estacio}}</p></div></div><div class="cartodb-popup-tip-container"></div></div>';
+	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, ['ecostrimed', 'cond', 'data', 'estacio', 'cartodb_id'], {
+			infowindowTemplate: template
+		  });
+
      }).on('error', function(err) {
             console.log('cartoDBerror: ' + err);
      });
