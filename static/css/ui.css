@@ -58,3 +58,7 @@ div.cartodb-legend, div.cssSelector{
 .combolegend  {
 	margin-bottom: 80px !important;
 }
+
+a.figure {
+	cursor: pointer;
+}

@@ -24,7 +24,7 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 	    "Ortofotografia": orto
 	};
 	
-	var sql = "SELECT e.estacio, e.cartodb_id,  e.the_geom_webmercator, b.ecostrimed, b.data, f.cond FROM estacions e INNER JOIN indexbio b ON e.estacio=b.estacio INNER JOIN fq f ON e.estacio=f.estacio";
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, b.data_any, b.epoca, e.the_geom_webmercator, b.ecostrimed, b.data, f.cond FROM estacions e INNER JOIN indexbio b ON e.estacio=b.estacio INNER JOIN fq f ON e.estacio=f.estacio LEFT JOIN carimedfotos2015 foto ON (b.data_any=foto.data_any AND b.epoca=foto.epoca)";
 		
 	var setYear = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
@@ -39,6 +39,10 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		
 		cartoSubLayer.setSQL(sql + sqlWhere);
 	};
+	
+	var openModal = function(id) {
+		alert(id);
+	}
 	    
 	// create a layer with 1 sublayer
 	cartodb.createLayer(map, {
@@ -59,9 +63,19 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		 timeslider.create(map, setYear);
 	     // info window
 	     // if we need a different template: http://requirejs.org/docs/download.html#text
-		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"><a href="#close" class="cartodb-popup-close-button close">x</a><div class="cartodb-popup-header"><div class="cover"><div id="spinner"></div><div class="image_not_found"> <i></i> <a href="#/map" class="help">Non-valid picture URL</a></div><span class="separator"></span><h1 class="order1">{{data}}</h1><div class="shadow"></div><img src="{{data}}" style="height:138px;display:inline" /></div></div><div class="cartodb-popup-content-wrapper"><div class="cartodb-popup-content"><h4>data</h4><p>{{data}}</p><h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>estacio</h4><p>{{estacio}}</p></div></div><div class="cartodb-popup-tip-container"></div></div>';
-	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, ['ecostrimed', 'cond', 'data', 'estacio', 'cartodb_id'], {
+		 //var template = '<div class="cartodb-popup header with-image v2" data-cover="true"><a href="#close" class="cartodb-popup-close-button close">x</a><div class="cartodb-popup-header"><div class="cover"><div id="spinner"></div><span class="separator"></span><h1 class="order1">{{data}}</h1><div class="shadow"></div><img src="{{link}}" style="height:138px" /></div></div><div class="cartodb-popup-content-wrapper"><div class="cartodb-popup-content"><h4>data</h4><p>{{data}}</p><h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>estacio</h4><p>{{estacio}}</p></div></div><div class="cartodb-popup-tip-container"></div></div>';
+		 var fields = ['link', 'estacio', 'data', 'tm', 'ecostrimed', 'cartodb_id'];
+		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} <h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}}</p><p><a class="figure">Veure gràfica</a></p></div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
+		 
+	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, fields, {
 			infowindowTemplate: template
+		  });
+		 
+		 cartoSubLayer.on('featureClick', function(e, latlng, pos, data) {
+				$(".figure").data("id", data.cartodb_id);
+				$(".figure").click(function() {
+					openModal($(this).data("id"));
+				});
 		  });
 
      }).on('error', function(err) {
