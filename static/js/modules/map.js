@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timeslider) {
+define(['legend', 'timeslider', 'cartodb', 'bootstrap', 'highcharts'], function(legend, timeslider) {
 	
 	var map = L.map('map').setView([41.522, 1.866], 10);
 	var cartoSubLayer;
@@ -40,10 +40,30 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		cartoSubLayer.setSQL(sql + sqlWhere);
 	};
 	
-	var openModal = function(id) {
-		alert(id);
-	}
-	    
+	var openModal = function(data) {
+		var div = "#modalFigure";
+		$(div).modal("show").find(".modal-body").html(data);
+	};
+	
+	var getEvolution = function(id, param) {
+		if (!param) param = legend.getActiveParam();
+		$.getJSON("https://ub.cartodb.com/api/v2/sql?callback=?",
+            {
+            q: "select " + param + " as param, data_any AS year from estacions e INNER JOIN indexbio b ON e.estacio=b.estacio where e.cartodb_id=" + id + " AND epoca=0 AND " + param + " IS NOT NULL ORDER BY data_any ASC"
+            },
+            function(data){
+            // parse JSON data
+			if(data) {
+				if(data.total_rows) drawFigure(data.rows);
+				else return("Error");
+			}
+        });
+	};
+	
+	var drawFigure = function(data) {
+		openModal(data[0].year);
+	};
+	
 	// create a layer with 1 sublayer
 	cartodb.createLayer(map, {
 	  user_name: 'ub',
@@ -74,7 +94,7 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		 cartoSubLayer.on('featureClick', function(e, latlng, pos, data) {
 				$(".figure").data("id", data.cartodb_id);
 				$(".figure").click(function() {
-					openModal($(this).data("id"));
+					getEvolution($(this).data("id"));
 				});
 		  });
 
