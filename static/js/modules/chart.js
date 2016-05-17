@@ -4,17 +4,33 @@
 
 
 define(['chartjs'], function() {
+    var getArray = function(data, property) {
+        var simpleArray = data.map(function(measure) {
+            if (measure.hasOwnProperty(property)) {
+                return measure[property];
+            }
+        });
+        return simpleArray;
+    };
+    
     var create = function(div, data) {
         var canvas = document.createElement('canvas');
-        $(div).append($(canvas));
+        if(data.length == 1) {
+            $(div).html("Només hi ha un valor: " + data[0].param + " l'any " + data[0].year);
+            return;
+        }
+        $(div).html($(canvas));
+        
+        var years = getArray(data, 'year');
+        var values = getArray(data, 'param');
 
         var myChart = new Chart($(canvas), {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: years,
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3]
+                    label: 'Ecostrimed',
+                    data: values
                 }]
             },
             options: {

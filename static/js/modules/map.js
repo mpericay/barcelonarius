@@ -63,7 +63,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var drawFigure = function(data) {
 		var div = "#modalFigure";
 		openModal(div);
-		chart.create(".modal-body", data);
+		chart.create(div + " .modal-body", data);
 	};
 	
 	// create a layer with 1 sublayer
