@@ -54,7 +54,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
             function(data){
             // parse JSON data
 			if(data) {
-				if(data.total_rows) drawFigure(data.rows);
+				if(data.total_rows) drawFigure(data.rows, param);
 				else return("Error");
 			}
         });
@@ -63,7 +63,10 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var drawFigure = function(data) {
 		var div = "#modalFigure";
 		openModal(div);
-		chart.create(div + " .modal-body", data);
+		var options = {
+			'title': legend.getLegend().name
+		}
+		chart.create(div + " .modal-body", data, options);
 	};
 	
 	// create a layer with 1 sublayer

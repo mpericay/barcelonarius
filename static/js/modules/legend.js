@@ -101,6 +101,9 @@ define(['cartodb', 'select'], function() {
        createSwitcher: function(map, sublayer, withLegend) {
        		return createSwitcher(map, sublayer, withLegend);
        },
+       getLegend: function() {
+       		return legends[activeParam];
+       },
        setActiveParam: function(value) {
             activeParam = value;
         },

@@ -13,7 +13,7 @@ define(['chartjs'], function() {
         return simpleArray;
     };
     
-    var create = function(div, data) {
+    var create = function(div, data, options) {
         var canvas = document.createElement('canvas');
         if(data.length == 1) {
             $(div).html("Només hi ha un valor: " + data[0].param + " l'any " + data[0].year);
@@ -46,8 +46,8 @@ define(['chartjs'], function() {
     };
     
     return {
-       create: function(div, data) {
-       		return create(div, data);
+       create: function(div, data, options) {
+       		return create(div, data, options);
        }
 	};
     
