@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['legend', 'timeslider', 'cartodb', 'bootstrap', 'highcharts'], function(legend, timeslider) {
+define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legend, timeslider, chart) {
 	
 	var map = L.map('map').setView([41.522, 1.866], 10);
 	var cartoSubLayer;
@@ -40,9 +40,9 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap', 'highcharts'], function(
 		cartoSubLayer.setSQL(sql + sqlWhere);
 	};
 	
-	var openModal = function(data) {
-		var div = "#modalFigure";
-		$(div).modal("show").find(".modal-body").html(data);
+	var openModal = function(div) {
+		$(div).modal("show");
+		
 	};
 	
 	var getEvolution = function(id, param) {
@@ -61,7 +61,9 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap', 'highcharts'], function(
 	};
 	
 	var drawFigure = function(data) {
-		openModal(data[0].year);
+		var div = "#modalFigure";
+		openModal(div);
+		chart.create(".modal-body", data);
 	};
 	
 	// create a layer with 1 sublayer

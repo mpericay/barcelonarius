@@ -11,7 +11,7 @@ var require = (function() {
             "cartodb": "//libs.cartocdn.com/cartodb.js/v3/3.15/cartodb",
             "jquery": "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
 			"select": "//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min",
-			"highcharts": "//code.highcharts.com/highcharts"
+			"chartjs": "//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart"
 		},
 		shim: {
 			"bootstrap": {
