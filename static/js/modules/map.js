@@ -47,9 +47,10 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var getEvolution = function(id, param) {
 		if (!param) param = legend.getActiveParam();
+		var table = legend.getLegend().table;
 		$.getJSON("https://ub.cartodb.com/api/v2/sql?callback=?",
             {
-            q: "select " + param + " as param, data_any AS year from estacions e INNER JOIN indexbio b ON e.estacio=b.estacio where e.cartodb_id=" + id + " AND epoca=0 AND " + param + " IS NOT NULL ORDER BY data_any ASC"
+            q: "select " + param + " as param, EXTRACT(YEAR FROM data) AS year from estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio where e.cartodb_id=" + id + " AND EXTRACT(MONTH FROM data) < 7 AND " + param + " IS NOT NULL ORDER BY year ASC"
             },
             function(data){
             // parse JSON data

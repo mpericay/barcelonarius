@@ -28,12 +28,14 @@ define(['cartodb', 'select'], function() {
         'cond': {
             cdbLegend: condLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8;  marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;  marker-width: 12;  marker-fill: #FFEDA0; marker-allow-overlap: true;} #estacions [ cond <= 9550] { marker-fill: #F03B20; } #estacions [ cond <= 1356.5] { marker-fill: #FEB24C; } #estacions [ cond <= 580.5] { marker-fill: #FFEDA0; }',
-            name: "Conductivitat"
+            name: "Conductivitat",
+            table: "fq"
         },
         'ecostrimed': {
             cdbLegend: ecostLegend,
             cartoCSS: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 12;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
             name: "Ecostrimed",
+            table: "indexbio",
             active: true
         }
     };
