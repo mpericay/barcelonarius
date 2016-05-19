@@ -64,9 +64,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var drawFigure = function(data) {
 		var div = "#modalFigure";
 		openModal(div);
-		var options = {
-			'title': legend.getLegend().name
-		}
+		var options = legend.getLegend();
+		
 		chart.create(div + " .modal-body", data, options);
 	};
 	

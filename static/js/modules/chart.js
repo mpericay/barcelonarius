@@ -29,7 +29,7 @@ define(['chartjs'], function() {
             data: {
                 labels: years,
                 datasets: [{
-                    label: 'Ecostrimed',
+                    label: options.name,
                     data: values
                 }]
             },
@@ -37,7 +37,8 @@ define(['chartjs'], function() {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero:true,
+                            max: options.maxvalue
                         }
                     }]
                 }
