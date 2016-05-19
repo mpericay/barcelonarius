@@ -102,6 +102,13 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 					getEvolution($(this).data("id"));
 				});
 		  });
+		 
+		 layer.bind('loading', function() {
+             $(".mapLoading").show()
+         });
+         layer.bind('load',  function() {
+             $(".mapLoading").hide();
+         });
 
      }).on('error', function(err) {
             console.log('cartoDBerror: ' + err);

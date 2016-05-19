@@ -62,3 +62,13 @@ div.cartodb-legend, div.cssSelector{
 a.figure {
 	cursor: pointer;
 }
+
+.mapLoading {
+	background: url('../img/ring.svg') no-repeat center center;
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	top: 45%;
+	left: 50%;
+	z-index: 1000;
+}
