@@ -24,7 +24,9 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	    "Ortofotografia": orto
 	};
 	
-	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, b.data_any, b.epoca, e.the_geom_webmercator, b.ecostrimed, b.data, f.cond FROM estacions e INNER JOIN indexbio b ON e.estacio=b.estacio INNER JOIN fq f ON e.estacio=f.estacio LEFT JOIN carimedfotos2015 foto ON (b.data_any=foto.data_any AND b.epoca=foto.epoca)";
+	var table = "carimed_historic_data";
+	
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.data, b.cond FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
 		
 	var setYear = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
@@ -47,7 +49,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var getEvolution = function(id, param) {
 		if (!param) param = legend.getActiveParam();
-		var table = legend.getLegend().table;
+		
 		$.getJSON("https://ub.cartodb.com/api/v2/sql?callback=?",
             {
             q: "select " + param + " as param, EXTRACT(YEAR FROM data) AS year from estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio where e.cartodb_id=" + id + " AND EXTRACT(MONTH FROM data) < 7 AND " + param + " IS NOT NULL ORDER BY year ASC"

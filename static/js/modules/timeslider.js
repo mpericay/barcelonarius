@@ -143,6 +143,7 @@ define(['slider'], function() {
 			min: 0,
 			max: moments.length - 1,
 			value: moments.length - 1,
+			//value: moments.length - 1,
 			step: 1,
 			ticks: tickArray,
 			ticks_labels: tickLabels,
