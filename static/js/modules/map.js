@@ -26,7 +26,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var table = "carimed_historic_data";
 	
-	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.data, b.cond FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp_rang FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
 		
 	var setYear = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
