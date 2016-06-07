@@ -48,8 +48,7 @@ define(['chartjs'], function() {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true,
-                            max: options.maxvalue
+                            beginAtZero:true
                         }
                     }]
                 },
@@ -58,6 +57,8 @@ define(['chartjs'], function() {
                 }
             }
         });
+        
+        if(options.maxvalue) myChart.options.scales.yAxes[0].ticks.max = options.maxvalue;
     };
     
     return {
