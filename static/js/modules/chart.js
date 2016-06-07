@@ -30,10 +30,21 @@ define(['chartjs'], function() {
                 labels: years,
                 datasets: [{
                     label: options.name,
+                    fill: false,
+                    pointBorderColor: "#2e6da4",
+                    pointBackgroundColor: "#337ab7",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "#337ab7",
+                    pointHoverBorderColor: "#f90",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHitRadius: 10,
                     data: values
                 }]
             },
             options: {
+                showLines: false,
                 scales: {
                     yAxes: [{
                         ticks: {
@@ -41,6 +52,9 @@ define(['chartjs'], function() {
                             max: options.maxvalue
                         }
                     }]
+                },
+                legend: {
+                    //display: false
                 }
             }
         });
