@@ -51,7 +51,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	};
 	
 	var getEvolution = function(id, param) {
-		if (!param) param = legend.getActiveParam();
+		if (!param) param = legend.getActiveParamName();
 		
 		$.getJSON("https://ub.cartodb.com/api/v2/sql?callback=?",
             {
@@ -69,7 +69,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var drawFigure = function(data) {
 		var div = "#modalFigure";
 		openModal(div);
-		var options = legend.getLegend();
+		var options = legend.getActiveParam();
 		
 		chart.create(div + " .modal-body", data, options);
 	};
@@ -80,7 +80,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	  type: 'cartodb',
 	  sublayers: [{
 	    sql: sql + buildYearWhere(2015),
-	    cartocss: legend.getLegend().cartoCSS,
+	    cartocss: legend.getActiveParam().cartoCSS,
         interactivity: 'cartodb_id'
 	  }]
 	}).addTo(map)

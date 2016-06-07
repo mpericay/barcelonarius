@@ -1,16 +1,16 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['params', 'cartodb', 'select'], function(params) {
+define(['params', 'cartodb', 'select'], function(paramsFile) {
     "use strict";
     
     var legendDiv;
     var activeParam = 'cond';
-    var legends = params.getParams();
+    var params = paramsFile.getParams();
     
     var createLegend = function(sym, parent){
         if (typeof sym === "undefined") {
-            $.each(legends, function(key, value) {           
+            $.each(params, function(key, value) {           
                 if (key == activeParam) {
                     sym = key;
                 }
@@ -24,7 +24,7 @@ define(['params', 'cartodb', 'select'], function(params) {
     var setLegend = function(sym) {
         if (!legendDiv) return;
         $(legendDiv).empty();
-        $(legendDiv).append(legends[sym].cdbLegend.render().el);
+        $(legendDiv).append(params[sym].cdbLegend.render().el);
     }
 
     var createSwitcher = function(map, sublayer, withLegend) {    
@@ -34,7 +34,7 @@ define(['params', 'cartodb', 'select'], function(params) {
             var combo = L.DomUtil.create( "div", "cssSelector", combolegend);
             var sel =  L.DomUtil.create( "select", "form-control dropup", combo );
             //$(sel).attr("data-size", 10);
-            $.each(legends, function(key, value) {
+            $.each(params, function(key, value) {
                 var option =  L.DomUtil.create( "option", "", sel );
                 option.value = key;
                 option.innerHTML = value.name;
@@ -49,8 +49,8 @@ define(['params', 'cartodb', 'select'], function(params) {
             $(sel).change(function() {
                 if(withLegend) setLegend(this.value);
                 activeParam = this.value; 
-                sublayer.setCartoCSS(legends[this.value].cartoCSS);
-                //sublayer.infowindow.set('template', legends[this.value].template);
+                sublayer.setCartoCSS(params[this.value].cartoCSS);
+                //sublayer.infowindow.set('template', params[this.value].template);
             });
             
             // make select responsive and mobile-friendly with https://silviomoreto.github.io/bootstrap-select/
@@ -69,13 +69,13 @@ define(['params', 'cartodb', 'select'], function(params) {
        createSwitcher: function(map, sublayer, withLegend) {
        		return createSwitcher(map, sublayer, withLegend);
        },
-       getLegend: function() {
-       		return legends[activeParam];
+       getActiveParam: function() {
+       		return params[activeParam];
        },
        setActiveParam: function(value) {
             activeParam = value;
         },
-        getActiveParam: function() {
+        getActiveParamName: function() {
             return activeParam;
         }
 	};

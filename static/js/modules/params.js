@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['params', 'cartodb', 'select'], function(params) {
+define(['cartodb'], function() {
     "use strict";
     
     var amoniLegend = new cdb.geo.ui.Legend.Custom({
@@ -94,7 +94,7 @@ define(['params', 'cartodb', 'select'], function(params) {
         ]
     });    
     
-    var legends = {
+    var params = {
         'amoni': {      
             cdbLegend: amoniLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1;marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7;marker-allow-overlap: true;}#estacions [ amoni >= 4.0] { marker-fill: #B81609;} #estacions [ amoni < 4.0] {marker-fill: #FF6600;} #estacions [ amoni <= 0.9] { marker-fill: #FFCC00;}#estacions [ amoni <= 0.4] { marker-fill: #229A00;} #estacions [ amoni <= 0.09] {marker-fill: #0080ff;}',
@@ -160,7 +160,7 @@ define(['params', 'cartodb', 'select'], function(params) {
     
     return {
        getParams: function() {
-       		return legends;
+       		return params;
        }
 	};
     
