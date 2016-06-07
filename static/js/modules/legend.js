@@ -111,14 +111,14 @@ define(['cartodb', 'select'], function() {
             cdbLegend: condLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8;  marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;  marker-width: 12;  marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ cond > 1000] { marker-fill: #B81609; } #estacions [ cond <= 1000] { marker-fill: #FFCC00; } #estacions [ cond <= 100] { marker-fill: #0080ff; }',
             name: "Conductivitat",
-            maxvalue: 5000
+            maxvalue: 5000,
+            active: true
         },
         'ecostrimed': {
             cdbLegend: ecostLegend,
             cartoCSS: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 12;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
             name: "Ecostrimed",
-            maxvalue: 6,
-            active: true
+            maxvalue: 6
         },
         'nitrats': {
             cdbLegend: nitratsLegend,
@@ -159,12 +159,12 @@ define(['cartodb', 'select'], function() {
     };
     
     var legendDiv;
-    var activeParam;
+    var activeParam = 'cond';
     
     var createLegend = function(sym, parent){
         if (typeof sym === "undefined") {
             $.each(legends, function(key, value) {           
-                if (legends[key].active) {
+                if (key == activeParam) {
                     sym = key;
                 }
             });
@@ -186,12 +186,13 @@ define(['cartodb', 'select'], function() {
             var combolegend = L.DomUtil.create( "div", "combolegend");
             var combo = L.DomUtil.create( "div", "cssSelector", combolegend);
             var sel =  L.DomUtil.create( "select", "form-control dropup", combo );
+            //$(sel).attr("data-size", 10);
             $.each(legends, function(key, value) {
                 var option =  L.DomUtil.create( "option", "", sel );
                 option.value = key;
                 option.innerHTML = value.name;
                 
-                if (legends[key].active) {
+                if (key == activeParam) {
                     if(withLegend) createLegend(key, combolegend);
                     activeParam = key; 
                     option.selected = "selected";

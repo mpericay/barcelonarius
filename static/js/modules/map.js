@@ -28,7 +28,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp_rang FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
 		
-	var setYear = function(value) {
+	var buildYearWhere = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
 			value = [value];
 		}
@@ -38,8 +38,11 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 			sqlWhere = sqlWhere ? sqlWhere + " OR " : " WHERE ";
 			sqlWhere += "b.data < '" + value[i] + "-07-01'::date AND b.data > '" + value[i] + "-01-01'";
 		}
-		
-		cartoSubLayer.setSQL(sql + sqlWhere);
+		return sqlWhere;
+	};
+	
+	var setYear = function(value) {
+		cartoSubLayer.setSQL(sql + buildYearWhere(value));
 	};
 	
 	var openModal = function(div) {
@@ -76,9 +79,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	  user_name: 'ub',
 	  type: 'cartodb',
 	  sublayers: [{
-	    //sql: "SELECT e.estacio, e.cartodb_id,  e.the_geom_webmercator, b.ecostrimed, b.data FROM estacions e LEFT JOIN indexbio b ON e.estacio=b.estacio WHERE b.data < '2015-07-01'::date AND b.data > '2015-01-01'",
-		sql: sql + " WHERE b.data < '2014-07-01'::date AND b.data > '2014-01-01'",
-	    cartocss: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-placement: point; marker-type: ellipse; marker-width: 12; marker-allow-overlap: true; } #estacions[ecostrimed=1] { marker-fill: #5CA2D1;} #estacions[ecostrimed=2] { marker-fill: #33a02c; } #estacions[ecostrimed=3] { marker-fill: #FFCC00; } #estacions[ecostrimed=4] { marker-fill: #FF6600; } #estacions[ecostrimed=5] { marker-fill: #B81609; } #estacions[ecostrimed=null] { marker-fill: #FFFFFF; }',
+	    sql: sql + buildYearWhere(2015),
+	    cartocss: legend.getLegend().cartoCSS,
         interactivity: 'cartodb_id'
 	  }]
 	}).addTo(map)
