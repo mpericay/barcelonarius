@@ -138,19 +138,19 @@ define(['cartodb'], function() {
             name: "Fosfats",
             maxvalue: 10
         },
-        'IHF': {
+        'ihf': {
             cdbLegend: ihfLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ ihf < 40] {   marker-fill: #B81609;} #estacions [ ihf > 40] {   marker-fill: #FFCC00;} #estacions [ ihf > 60] {   marker-fill: #0080ff;} #estacions [ ihf = -1] {   marker-fill: #abacad;}',
             name: "IHF",
             maxvalue: 100
         },
-        'QBR': {
+        'qbr': {
             cdbLegend: qbrLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ qbr <= 25] { marker-fill: #B81609;} #estacions [ qbr >= 30] { marker-fill: #FF6600;} #estacions [ qbr >= 55] { marker-fill: #FFCC00;} #estacions [ qbr >= 75] { marker-fill: #229A00;} #estacions [ qbr >= 100] { marker-fill: #0080ff;}',
             name: "QBR",
             maxvalue: 100
         },
-        'IBMWP': {
+        'ibmwp': {
             cdbLegend: IBMWPLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ibmwp_rang=1] {   marker-fill: #3E7BB6;} #estacions [ibmwp_rang=2] {   marker-fill: #33a02c;} #estacions [ibmwp_rang=3] {   marker-fill: #FFCC00;} #estacions [ibmwp_rang=4] {   marker-fill: #FF6600;} #estacions [ibmwp_rang=5] {   marker-fill: #B81609;} #estacions [ibmwp_rang=-1] {   marker-fill: #9b9b9b;} #estacions [ibmwp_rang=null] {   marker-fill: #FFFFFF;}',
             name: "IBMWP",

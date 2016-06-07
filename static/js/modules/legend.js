@@ -77,6 +77,9 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
         },
         getActiveParamName: function() {
             return activeParam;
+        },
+        getAllParamNames: function() {
+            return Object.keys(params);
         }
 	};
 	

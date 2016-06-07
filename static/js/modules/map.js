@@ -26,7 +26,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var table = "carimed_historic_data";
 	
-	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp_rang FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
 		
 	var buildYearWhere = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
@@ -93,8 +93,17 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	     // info window
 	     // if we need a different template: http://requirejs.org/docs/download.html#text
 		 //var template = '<div class="cartodb-popup header with-image v2" data-cover="true"><a href="#close" class="cartodb-popup-close-button close">x</a><div class="cartodb-popup-header"><div class="cover"><div id="spinner"></div><span class="separator"></span><h1 class="order1">{{data}}</h1><div class="shadow"></div><img src="{{link}}" style="height:138px" /></div></div><div class="cartodb-popup-content-wrapper"><div class="cartodb-popup-content"><h4>data</h4><p>{{data}}</p><h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>estacio</h4><p>{{estacio}}</p></div></div><div class="cartodb-popup-tip-container"></div></div>';
-		 var fields = ['link', 'estacio', 'data', 'tm', 'ecostrimed', 'cartodb_id'];
-		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} <h4>ecostrimed</h4><p>{{ecostrimed}}</p><h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}}</p><p><a class="figure">Veure gràfica</a></p></div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
+		 var fields = ['link', 'estacio', 'data', 'tm', 'cartodb_id'];
+		 var params = legend.getAllParamNames();
+		 fields = fields.concat(params);
+		 
+		 var fieldsTemplate = '<h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}} > <a class="figure">Veure gràfica</a></p>';
+		 
+		 for(var i=0 ; i < params.length; i ++) {
+			fieldsTemplate += '<h4>' + params[i]+ '</h4><p>{{' + params[i] + '}}</p>';
+		 }
+		 
+		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} ' + fieldsTemplate + '</div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
 		 
 	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, fields, {
 			infowindowTemplate: template
