@@ -7,106 +7,81 @@ define(['slider'], function() {
 	
 	var moments = [
 		{
-			year: '1979',
-			dry: false
+			year: '1979'
 		},
 		{
 			year: '1980-1989',
-			yearArray: [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989], 
-			dry: false
+			yearArray: [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989]
 		},
 		{
-			year: '1990',
-			dry: false
+			year: '1990'
 		},
 		{
 			year: '1991-1994', 
-			yearArray: [1991, 1992, 1993, 1994], 
-			dry: false
+			yearArray: [1991, 1992, 1993, 1994]
 		},
 		{
-			year: '1995',
-			dry: false
+			year: '1995'
 		},
 		{
-			year: '1996',
-			dry: false
+			year: '1996'
 		},
 		{
-			year: '1997',
-			dry: false
+			year: '1997'
 		},
 		{
-			year: '1998',
-			dry: false
+			year: '1998'
 		},
 		{
-			year: '1999',
-			dry: false
+			year: '1999'
 		},
 		{
-			year: '2000',
-			dry: false
+			year: '2000'
 		},
 		{
-			year: '2001',
-			dry: false
+			year: '2001'
 		},
 		{
-			year: '2002',
-			dry: false
+			year: '2002'
 		},
 		{
-			year: '2003',
-			dry: true
+			year: '2003'
 		},
 		{
-			year: '2004',
-			dry: false
+			year: '2004'
 		},
 		{
-			year: '2005',
-			dry: false
+			year: '2005'
 		},
 		{
-			year: '2006',
-			dry: true
+			year: '2006'
 		},
 		{
-			year: '2007',
-			dry: false
+			year: '2007'
 		},
 		{
-			year: '2008',
-			dry: false
+			year: '2008'
 		},
 		{
-			year: '2009',
-			dry: false
+			year: '2009'
 		},
 		{
-			year: '2010',
-			dry: false
+			year: '2010'
 		},
 		{
-			year: '2011',
-			dry: true
+			year: '2011'
 		},
 		{
-			year: '2012',
-			dry: false
+			year: '2012'
 		},
 		{
-			year: '2013',
-			dry: true
+			year: '2013'
 		},
 		{
-			year: '2014',
-			dry: false
+			year: '2014'
 		},
 		{
-			year: '2015',
-			dry: false
+			year: '2015'
 		}
 	];
 	
@@ -120,7 +95,8 @@ define(['slider'], function() {
 	});
 	
 	var isDry = function(val) {
-        return moments[val].dry;
+        //return moments[val].dry;
+		return false;
     };
     
     var getTooltip = function(value) {
