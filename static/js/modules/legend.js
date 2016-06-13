@@ -33,9 +33,18 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
             var combolegend = L.DomUtil.create( "div", "combolegend");
             var combo = L.DomUtil.create( "div", "cssSelector", combolegend);
             var sel =  L.DomUtil.create( "select", "form-control dropup", combo );
-            //$(sel).attr("data-size", 10);
+            var activeGroup = "";
+            var activeGroupObject = null;
             $.each(params, function(key, value) {
-                var option =  L.DomUtil.create( "option", "", sel );
+                if (value.group != activeGroup) {
+                    var optgroup =  L.DomUtil.create( "optgroup", "", sel );
+                    $(optgroup).attr("Label", value.group);
+                    activeGroup = value.group;
+                    activeGroupObject = optgroup;
+                }
+                //append to optgroup or to select?
+                var parent = activeGroupObject ? activeGroupObject : sel;
+                var option =  L.DomUtil.create( "option", "", parent );
                 option.value = key;
                 option.innerHTML = value.name;
                 
