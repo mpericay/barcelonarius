@@ -18,6 +18,8 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
         }
 
         legendDiv = L.DomUtil.create( "div", "legend", parent);
+        disableEvent(legendDiv, 'click');
+        disableEvent(legendDiv, 'dblclick');
         setLegend(sym);
     };
     
@@ -26,11 +28,20 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
         $(legendDiv).empty();
         $(legendDiv).append(params[sym].cdbLegend.render().el);
     }
+    
+    var disableEvent = function(div, event) {
+        $(div).bind(event, function(e) {
+            e.stopPropagation();
+        });
+    }
 
     var createSwitcher = function(map, sublayer, withLegend) {    
         var switcher = L.control({position: "bottomright"});
         switcher.onAdd = function(map) {
             var combolegend = L.DomUtil.create( "div", "combolegend");
+            //prevent mousewheel to zoom on map
+            disableEvent(combolegend, 'mousewheel');
+            
             var combo = L.DomUtil.create( "div", "cssSelector", combolegend);
             var sel =  L.DomUtil.create( "select", "form-control dropup", combo );
             var activeGroup = "";
