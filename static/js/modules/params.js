@@ -7,9 +7,11 @@ define(['cartodb'], function() {
     var amoniLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (amoni)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "Aigües netes", value: "#0080ff" },
+          { name: "Toxicitat", value: "#229A00" },
+          { name: "Toxicitat pH alt", value: "#FFCC00" },
+          { name: "Toxicitat elevada", value: "#FF6600" },
+          { name: "Toxicitat aguda", value: "#B81609" }
         ]
     });
     
@@ -41,45 +43,49 @@ define(['cartodb'], function() {
     var nitratsLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (nitrats)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "Aigües netes", value: "#0080ff" },
+          { name: "Risc eutrofització", value: "#FFCC00" },
+          { name: "Aigües contaminades", value: "#B81609" }
         ]
     });
     
     var nitritsLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (nitrits)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "Aigües netes", value: "#0080ff" },
+          { name: "Risc tòxics", value: "#FFCC00" },
+          { name: "Aigües contaminades", value: "#B81609" }
         ]
     });
     
     var fosfatsLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (fosfats)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "Aigües netes", value: "#0080ff" },
+          { name: "Lleugera eutrofització", value: "#229A00" },
+          { name: "Creixements vegetals", value: "#FFCC00" },
+          { name: "Aigües eutrofitzades", value: "#FF6600" },
+          { name: "Molt eutrofitzades", value: "#B81609" }
         ]
     });
     
     var ihfLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (IHF)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "<= 40", value: "#B81609" },
+          { name: "> 40", value: "#FFCC00" },
+          { name: "> 60", value: "#0080ff" }
         ]
     });
     
     var qbrLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (QBR)",
         data: [
-          { name: "Molt mineralitzades", value: "#B81609" },
-          { name: "Mitjanament mineral.", value: "#FFCC00" },
-          { name: "Poc mineralitzades", value: "#0080ff" }
+          { name: "Molt bona", value: "#0080ff" },
+          { name: "Bona", value: "#229A00" },
+          { name: "Mediocre", value: "#FFCC00" },
+          { name: "Dolenta", value: "#FF6600" },
+          { name: "Pèssima", value: "#B81609" }
         ]
     });
     
