@@ -19,20 +19,115 @@ h3 {
 	text-align: center;
 }
 
-#sliderContainer {
-	position: absolute;
-	left: 0px;
-	bottom: 20px;	
-	background-color: #FFF;
-	padding: 10px 20px;
-	width: 96%;
-	margin-left: 2%;
-	margin-right: 2%;
-	border-radius: 15px;
+.cartodb-legend.custom {
+    border: medium none;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
 }
 
-.slider.slider-horizontal {
+.form-control{ background: none !important; }
+
+.btn-primary{ 
+	background: #008080 !important; 
+	border: none !important;
+	border-radius: 0 0 4px 4px !important;
+    margin-top: -1px;
+}
+
+.dropdown-menu.open {
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+    margin: 0;
+    padding-bottom: 0;
+    border: none;
+}
+
+#sliderContainer {
+    background-color: #fff;
+    border-radius: 4px;
+    bottom: 20px;
+    left: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 15px 30px;
+    position: absolute;
+    width: 90%;
+}
+
+.slider {
 	width: 100% !important;
+	margin: 0 !important;
+}
+
+.slider-track{
+	background: #dfdfdf !important;
+	height: 2px !important;
+}
+
+.slider-selection{ 
+	background: #008080 !important;
+	transition: width 0.3s ease 0s !important; 
+}
+
+.slider-tick.in-selection {
+    background: #fff !important;
+    opacity: 1;
+    border-color: #008080 !important;
+}
+
+.slider-tick {
+    background: #fff !important;
+    border: 2px solid #dfdfdf !important;
+    height: 12px !important;
+    position: absolute;
+    width: 12px !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
+
+.slider-tick:hover {
+	background: #008080 !important;
+	border-color: #008080 !important;
+	transition: 0.2s ease 0s !important; 
+}
+
+.slider-tick-label {
+    margin-left: -10.25vw !important;
+    width: 20vw !important;
+}
+
+.slider-handle {
+    background: #008080 !important;
+    height: 12px !important;
+    position: absolute;
+    transition: transform 0.4s ease 0s !important;
+    width: 12px !important;
+}
+
+.slider.slider-horizontal .slider-tick-label-container {
+    color: #b9b9b9;
+    font-size: 8.5pt;
+    margin-top: 10px !important;
+    white-space: nowrap;
+}
+
+.tooltip{ 
+	margin-top: -41px !important;
+	margin-left: -31.5px !important;
+    opacity: 1 !important;
+}
+
+.tooltip-inner {
+    background-color: #008080 !important;
+    border-radius: 2px !important;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 5px 10px !important;
+}
+
+.tooltip-arrow {
+    border-top-color: #008080 !important;
 }
 
 .slider-handle.slider-handle-dry {
