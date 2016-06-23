@@ -3,7 +3,7 @@
  */
 define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legend, timeslider, chart) {
 	
-	var map = L.map('map').setView([41.522, 1.866], 10);
+	var map = L.map('map').setView([41.522, 1.866], 9);
 	var cartoSubLayer;
 
 	var orto = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesbase/wms/service?", {
@@ -26,7 +26,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var table = "carimed_historic_data";
 	
-	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON (EXTRACT(YEAR FROM b.data)=foto.data_any)";
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN "
+	+ table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON ((EXTRACT(YEAR FROM b.data)=foto.data_any) AND b.estacio=foto.estacio)";
 		
 	var buildYearWhere = function(value) {
 		if( Object.prototype.toString.call(value) !== '[object Array]' ) {
@@ -47,7 +48,6 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var openModal = function(div) {
 		$(div).modal("show");
-		
 	};
 	
 	var getEvolution = function(id, param) {
