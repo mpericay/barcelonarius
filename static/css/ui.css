@@ -168,3 +168,12 @@ a.figure {
 	left: 50%;
 	z-index: 2000;
 }
+
+div.cartodb-tooltip-content-wrapper {
+	padding: 5px;
+}
+
+div.cartodb-tooltip {
+	min-width: 50px !important;
+	z-index: 5 !important;
+}

@@ -4,7 +4,9 @@
 define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legend, timeslider, chart) {
 	
 	var map = L.map('map').setView([41.522, 1.866], 9);
+	//store layer and sublayer to play with
 	var cartoSubLayer;
+	var cartoLayer;
 
 	var orto = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesbase/wms/service?", {
 		layers: 'orto5m',
@@ -74,6 +76,19 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		chart.create(div + " .modal-body", data, options);
 	};
 	
+	var createTooltip = function(param) {
+		cartoLayer.leafletMap.viz.overlays = [];
+		cartoLayer.leafletMap.viz.addOverlay({
+		  type: 'tooltip',
+		  layer: cartoSubLayer,
+		  template: '<div class="cartodb-tooltip-content-wrapper"><p>{{' + param + '}}</p></div>', 
+		  width: 50,
+		  height: 20,
+		  position: 'top|right',
+		  fields: [{ name: param }]
+		});		
+	};
+	
 	// create a layer with 1 sublayer
 	cartodb.createLayer(map, {
 	  user_name: 'ub',
@@ -87,8 +102,9 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	.done(function(layer) {
 	     layer.setZIndex(7);
+		 cartoLayer = layer;
 		 cartoSubLayer = layer.getSubLayer(0);
-		 legend.createSwitcher(map, cartoSubLayer, true);
+		 legend.createSwitcher(map, cartoSubLayer, true, createTooltip);
 		 timeslider.create(map, setYear);
 	     // info window
 	     // if we need a different template: http://requirejs.org/docs/download.html#text
@@ -108,6 +124,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, fields, {
 			infowindowTemplate: template
 		  });
+		 
+		 createTooltip(legend.getActiveParamName());
 		 
 		 cartoSubLayer.on('featureClick', function(e, latlng, pos, data) {
 				$(".figure").data("id", data.cartodb_id);

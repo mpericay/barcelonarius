@@ -35,7 +35,7 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
         });
     }
 
-    var createSwitcher = function(map, sublayer, withLegend) {    
+    var createSwitcher = function(map, sublayer, withLegend, callback) {    
         var switcher = L.control({position: "bottomright"});
         switcher.onAdd = function(map) {
             var combolegend = L.DomUtil.create( "div", "combolegend");
@@ -70,7 +70,7 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
                 if(withLegend) setLegend(this.value);
                 activeParam = this.value; 
                 sublayer.setCartoCSS(params[this.value].cartoCSS);
-                //sublayer.infowindow.set('template', params[this.value].template);
+                callback(this.value);
             });
             
             // make select responsive and mobile-friendly with https://silviomoreto.github.io/bootstrap-select/
@@ -86,8 +86,8 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
     };
     
 	return {
-       createSwitcher: function(map, sublayer, withLegend) {
-       		return createSwitcher(map, sublayer, withLegend);
+       createSwitcher: function(map, sublayer, withLegend, callback) {
+       		return createSwitcher(map, sublayer, withLegend, callback);
        },
        getActiveParam: function() {
        		return params[activeParam];
