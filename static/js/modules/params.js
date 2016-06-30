@@ -72,9 +72,9 @@ define(['cartodb'], function() {
     var ihfLegend = new cdb.geo.ui.Legend.Custom({
         title: "Llegenda (IHF)",
         data: [
-          { name: "<= 40", value: "#B81609" },
-          { name: "> 40", value: "#FFCC00" },
-          { name: "> 60", value: "#0080ff" }
+          { name: "Hàbitat empobrit", value: "#B81609" },
+          { name: "Hàb. amb deficiències", value: "#FFCC00" },
+          { name: "Hàb. ben construït", value: "#0080ff" }
         ]
     });
     
