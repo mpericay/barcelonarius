@@ -3,7 +3,7 @@
  */
 define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legend, timeslider, chart) {
 	
-	var map = L.map('map').setView([41.522, 1.866], 9);
+	var map = L.map('map').setView([41.522, 1.866], 10);
 	//store layer and sublayer to play with
 	var cartoSubLayer;
 	var cartoLayer;
@@ -26,6 +26,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	    "Ortofotografia": orto
 	};
 	
+	var sqlAPI = "https://ub.cartodb.com/api/v2/sql?";
 	var table = "carimed_historic_data";
 	
 	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN "
@@ -52,10 +53,10 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		$(div).modal("show");
 	};
 	
-	var getEvolution = function(id, param) {
+	var getEvolution = function(id, estacio, param) {
 		if (!param) param = legend.getActiveParamName();
 		
-		$.getJSON("https://ub.cartodb.com/api/v2/sql?callback=?",
+		$.getJSON(sqlAPI + "callback=?",
             {
             q: "select " + param + " as param, EXTRACT(YEAR FROM data) AS year from estacions e INNER JOIN " + table + " b ON e.estacio=b.estacio where e.cartodb_id=" + id + " AND EXTRACT(MONTH FROM data) < 7 AND " + param + " IS NOT NULL ORDER BY year ASC"
             },
@@ -66,6 +67,14 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 				else return("Error");
 			}
         });
+		
+		$("#download").click(function() {
+			getQuotes(estacio);
+		});
+		
+		$("#downloadAll").click(function() {
+			getQuotes();
+		});
 	};
 	
 	var drawFigure = function(data) {
@@ -74,7 +83,21 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		var options = legend.getActiveParam();
 		
 		chart.create(div + " .modal-body", data, options);
+		
 	};
+	
+	var getQuotes = function(station, format){
+
+		if(!format) format = "csv";
+        
+        var query = "select * from " + table;
+        if(station) {
+            query += " where estacio='"+station+"'";
+        }
+        var service = sqlAPI + "q=" + encodeURIComponent(query) + "&format=" + format;
+
+        location.href = service;
+    };
 	
 	var createTooltip = function(param) {
 		cartoLayer.leafletMap.viz.overlays = [];
@@ -129,8 +152,9 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		 
 		 cartoSubLayer.on('featureClick', function(e, latlng, pos, data) {
 				$(".figure").data("id", data.cartodb_id);
+				$(".figure").data("estacio", data.estacio);
 				$(".figure").click(function() {
-					getEvolution($(this).data("id"));
+					getEvolution($(this).data("id"), $(this).data("estacio"));
 				});
 		  });
 		 
