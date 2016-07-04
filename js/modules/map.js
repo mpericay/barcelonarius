@@ -101,6 +101,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	
 	var createTooltip = function(param, unit) {
 		//delete tooltip
+		var tooltip = cartoLayer.leafletMap.viz.getOverlay('tooltip');
+		if(tooltip) tooltip.$el.remove();
 		cartoLayer.leafletMap.viz.overlays = [];
 		
 		var template = '<div class="cartodb-tooltip-content-wrapper"><p>{{' + param + '}}';
