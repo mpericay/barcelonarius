@@ -105,38 +105,43 @@ define(['cartodb'], function() {
             cdbLegend: condLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8;  marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;  marker-width: 12;  marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ cond > 1000] { marker-fill: #B81609; } #estacions [ cond <= 1000] { marker-fill: #FFCC00; } #estacions [ cond <= 100] { marker-fill: #0080ff; }',
             name: "Conductivitat",
-            group: "Ind. fisicoquímics"
+            group: "Ind. fisicoquímics",
+            unit: '&micro;S'
         },
         'amoni': {      
             cdbLegend: amoniLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1;marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7;marker-allow-overlap: true;}#estacions [ amoni >= 4.0] { marker-fill: #B81609;} #estacions [ amoni < 4.0] {marker-fill: #FF6600;} #estacions [ amoni <= 0.9] { marker-fill: #FFCC00;}#estacions [ amoni <= 0.4] { marker-fill: #229A00;} #estacions [ amoni <= 0.09] {marker-fill: #0080ff;}',
             name: "Amoni",
             group: "Ind. fisicoquímics",
-            active: true
+            unit: 'mg/l'
         },        
         'nitrats': {
             cdbLegend: nitratsLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ nitrats > 10] { marker-fill: #B81609;} #estacions [ nitrats <= 10] { marker-fill: #FFCC00;} #estacions [ nitrats <= 0.67] { marker-fill: #0080ff;}',
             name: "Nitrats",
-            group: "Ind. fisicoquímics"
+            group: "Ind. fisicoquímics",
+            unit: 'mg/l'
         },
         'nitrits': {
             cdbLegend: nitritsLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ nitrits > 10] { marker-fill: #B81609;} #estacions [ nitrits <= 10] { marker-fill: #FFCC00;} #estacions [ nitrits <= 0.67] { marker-fill: #0080ff;}',
             name: "Nitrits",
-            group: "Ind. fisicoquímics"
+            group: "Ind. fisicoquímics",
+            unit: 'mg/l'
         },
         'fosfats': {
             cdbLegend: fosfatsLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ fosfats >= 0.5] {   marker-fill: #B81609;} #estacions [ fosfats < 0.5] {   marker-fill: #FF6600;} #estacions [ fosfats <= 0.3] {   marker-fill: #FFCC00;} #estacions [ fosfats <= 0.1] {   marker-fill: #229A00;} #estacions [ fosfats <= 0.03] {   marker-fill: #0080ff;}',
             name: "Fosfats",
-            group: "Ind. fisicoquímics"
+            group: "Ind. fisicoquímics",
+            unit: 'mg/l'
         },
         'cabal': {
             cdbLegend: cabalLegend,
             cartoCSS: '#estacions{ marker-fill-opacity: 0.9; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-placement: point; marker-multi-policy: largest; marker-type: ellipse; marker-fill: #5CA2D1; marker-allow-overlap: true; marker-clip: false;} #estacions [cabal > 150] { marker-width: 25.0;} #estacions [ cabal <= 150] {   marker-width: 20;} #estacions [ cabal <= 100] {   marker-width: 15;} #estacions [ cabal <= 50] {   marker-width: 10;} #estacions [ cabal <= 10] {   marker-width: 7;} #estacions [ cabal <= 1] {   marker-width: 5;} #estacions [ cabal = -2] {   marker-width: 10;  marker-fill: #b7b7b7;} #estacions [ cabal = -1] {   marker-width: 7;  marker-fill: #000000;}',
             name: "Cabal",
-            group: "Ind. hidromorfològics"       
+            group: "Ind. hidromorfològics",
+            unit: 'l/s'      
         },        
         'ihf': {
             cdbLegend: ihfLegend,

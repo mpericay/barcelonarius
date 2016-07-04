@@ -99,12 +99,17 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
         location.href = service;
     };
 	
-	var createTooltip = function(param) {
+	var createTooltip = function(param, unit) {
+		//delete tooltip
 		cartoLayer.leafletMap.viz.overlays = [];
+		
+		var template = '<div class="cartodb-tooltip-content-wrapper"><p>{{' + param + '}}';
+		if(unit) template += ' ' + unit;
+		template += '</p></div>';
 		cartoLayer.leafletMap.viz.addOverlay({
 		  type: 'tooltip',
 		  layer: cartoSubLayer,
-		  template: '<div class="cartodb-tooltip-content-wrapper"><p>{{' + param + '}}</p></div>', 
+		  template: template, 
 		  width: 50,
 		  height: 20,
 		  position: 'top|right',
@@ -149,7 +154,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 			infowindowTemplate: template
 		  });
 		 
-		 createTooltip(legend.getActiveParamName());
+		 createTooltip(legend.getActiveParamName(), legend.getActiveParam().unit);
 		 
 		 cartoSubLayer.on('featureClick', function(e, latlng, pos, data) {
 				$(".figure").data("id", data.cartodb_id);
