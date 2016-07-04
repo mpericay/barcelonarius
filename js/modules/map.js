@@ -8,22 +8,26 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var cartoSubLayer;
 	var cartoLayer;
 
-	var orto = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesbase/wms/service?", {
-		layers: 'orto5m',
-		format: 'image/jpeg',
-		continuousWorld: true,
-		attribution: 'Institut Cartogràfic i Geològic de Catalunya -ICGC',
-	}).addTo(map);
-	var topo = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesbase/wms/service?", {
-		layers: 'mtc250m',
+	var orto = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesmultibase/noutm/wms/service?", {
+		layers: 'ortogris',
 		format: 'image/jpeg',
 		continuousWorld: true,
 		attribution: 'Institut Cartogràfic i Geològic de Catalunya -ICGC',
 	});
+	var topo = L.tileLayer.wms("http://geoserveis.icc.cat/icc_mapesmultibase/noutm/wms/service?", {
+		layers: 'topogris',
+		format: 'image/jpeg',
+		continuousWorld: true,
+		attribution: 'Institut Cartogràfic i Geològic de Catalunya -ICGC',
+	});
+	var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>'
+	}).addTo(map);
 	    
 	var baseLayers = {
 	    "Topogràfic": topo,
-	    "Ortofotografia": orto
+	    "Ortofotografia": orto,
+		"Esquemàtic": positron
 	};
 	
 	var sqlAPI = "https://ub.cartodb.com/api/v2/sql?";
