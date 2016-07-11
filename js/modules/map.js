@@ -33,7 +33,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	var sqlAPI = "https://ub.cartodb.com/api/v2/sql?";
 	var table = "carimed_historic_data";
 	
-	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN "
+	var sql = "SELECT foto.link, e.tm, e.estacio, e.cartodb_id, e.the_geom_webmercator, b.ecostrimed, b.cabal, b.data::text, b.amoni, b.cond, b.nitrats, b.nitrits, b.fosfats, b.ihf, b.qbr, b.ibmwp, b.ibmwp_rang FROM estacions e INNER JOIN "
 	+ table + " b ON e.estacio=b.estacio LEFT JOIN carimed_historic_fotos foto ON ((EXTRACT(YEAR FROM b.data)=foto.data_any) AND b.estacio=foto.estacio)";
 		
 	var buildYearWhere = function(value) {
