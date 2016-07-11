@@ -157,6 +157,9 @@ div.cartodb-legend, div.cssSelector{
 
 a.figure {
 	cursor: pointer;
+	color: #979613;
+	font-weight: bold;
+	font-size: larger;
 }
 
 .mapLoading {

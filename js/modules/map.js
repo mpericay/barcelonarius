@@ -152,7 +152,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		 var params = legend.getAllParamNames();
 		 fields = fields.concat(params);
 		 
-		 var fieldsTemplate = '<a class="figure">Veure gràfica</a></p>';
+		 var fieldsTemplate = '<a class="figure">> Gràfica i dades</a></p>';
 		 fieldsTemplate += '<h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}}</p>';
 		 
 		 for(var i=0 ; i < params.length; i ++) {
