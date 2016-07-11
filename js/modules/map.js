@@ -3,7 +3,12 @@
  */
 define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legend, timeslider, chart) {
 	
-	var map = L.map('map').setView([41.522, 1.866], 10);
+	var map = L.map('map', {
+		center: [41.522, 1.986],
+		zoom: 10,
+		minZoom: 8,
+		maxZoom: 18
+	});
 	//store layer and sublayer to play with
 	var cartoSubLayer;
 	var cartoLayer;
