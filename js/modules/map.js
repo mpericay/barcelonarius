@@ -181,45 +181,44 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
          layer.bind('load',  function() {
              $(".mapLoading").hide();
          });
+		 
+		 //layers control
+		 var layersControl = L.control.layers(baseLayers, null).addTo(map);
+		 addExtraLayers(layersControl);
 
      }).on('error', function(err) {
             console.log('cartoDBerror: ' + err);
      });
-     
-     //create additional overlays
-     var conques =  L.tileLayer.wms("http://aca-web.gencat.cat/sig/wms/PUBLIC/CONQUES/Mapserver/WMSServer?", {
-		layers: 'Conques_principals',
-		format: 'image/png',
-		transparent: true
-	});
-		
-	var depuradores =  L.tileLayer.wms("http://sima.gencat.cat/DMAH_ws/SIMA_OGC/MapServer/WMSServer?", {
-		layers: '2',
-		format: 'image/png',
-		transparent: true
-	});
 	
-	var parcs =  L.tileLayer.wms("http://sima.gencat.cat/DMAH_ws/SIMA_OGC/MapServer/WMSServer?", {
-		layers: '12',
-		format: 'image/png',
-		opacity: 0.5,
-		transparent: true
-	});	
-		
-	var rius =  L.tileLayer.wms("http://aca-web.gencat.cat/sig/wms/PUBLIC/CONQUES/MapServer/WMSServer?", {
-		layers: 'Xarxa_de_rius_principal',
-		format: 'image/png',
-		transparent: true
-	}).addTo(map);
-	
-	
-	var overlayLayers = {
-		'Parcs': parcs,
-		'Rius': rius,
-		'Conques': conques,
-		'Depuradores': depuradores
+	// create more layers
+	var addExtraLayers = function(layerControl) {
+		//edar
+		addOverlay(layerControl, "SELECT * FROM edar_2016", "#edar_2016{marker-file: url(http://com.cartodb.users-assets.production.s3.amazonaws.com/simpleicon/map51.svg);marker-fill-opacity: 0.9;marker-line-color: #FFF;marker-line-width: 1;marker-line-opacity: 1;marker-placement: point;marker-type: ellipse;marker-width: 8;marker-fill: #000000;marker-allow-overlap: true;}", "EDAR");
+		//rius
+		addOverlay(layerControl, "SELECT * FROM rius_barcelona", "#rius_barcelona{ line-color: #5CA2D1; line-width: 1.5; line-opacity: 0.7;}", "Rius", true);
+		//embassaments
+		addOverlay(layerControl, "SELECT * FROM embassaments_barcelona", "#embassaments_barcelona{polygon-fill: #5CA2D1;polygon-opacity: 0.7;line-color: #5CA2D1;line-width: 1;line-opacity: 0.7;}", "Embassaments", true);
+		//provincia
+		addOverlay(layerControl, "SELECT * FROM limits_provincia_barcelona", "#limits_provincia_barcelona{polygon-fill: #FFFFFF;polygon-opacity: 0;line-color: #000000;line-width: 1;line-opacity: 0.5;}", "Provincia", true);	
+		//conques
+		addOverlay(layerControl, "SELECT * FROM conques_barcelona", "#conques_barcelona{polygon-fill: #FF6600;polygon-opacity: 0;line-color: #6B0FB2;line-width: 0.2;line-opacity: 0.8;}#conques_barcelona::labels {text-name: [nom_conca_];text-face-name: 'DejaVu Sans Book';text-size: 9;text-label-position-tolerance: 0;text-fill: #6B0FB2;text-halo-fill: #FFF;text-halo-radius: 1;text-dy: -10;text-allow-overlap: true;text-placement: point;text-placement-type: dummy;}", "Conques");
 	};
-	
-	L.control.layers(baseLayers, overlayLayers).addTo(map);
-	
+     
+    //create additional overlays
+	var addOverlay = function(layerControl, sql, cartocss, title, visible) {
+		var layer = cartodb.createLayer(map, {
+			  user_name: 'ub',
+			  type: 'cartodb',
+			  sublayers: [{
+				sql: sql,
+				cartocss: cartocss
+			  }]
+			})
+			.on('done', function(lyr) {
+				layerControl.addOverlay(lyr, title);
+		});
+		
+		if(visible) layer.addTo(map);
+	};
+
 });
