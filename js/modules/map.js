@@ -7,7 +7,8 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		center: [41.522, 1.986],
 		zoom: 10,
 		minZoom: 8,
-		maxZoom: 18
+		maxZoom: 18,
+		scrollWheelZoom: false
 	});
 	//store layer and sublayer to play with
 	var cartoSubLayer;
