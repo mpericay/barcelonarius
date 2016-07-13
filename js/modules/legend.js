@@ -70,7 +70,7 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
                 if(withLegend) setLegend(this.value);
                 activeParam = this.value; 
                 sublayer.setCartoCSS(params[this.value].cartoCSS);
-                callback(this.value, params[this.value].unit);
+                callback(this.value, params[this.value]);
             });
             
             // make select responsive and mobile-friendly with https://silviomoreto.github.io/bootstrap-select/
