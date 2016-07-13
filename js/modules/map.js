@@ -100,9 +100,10 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 
 		if(!format) format = "csv";
         
-        var query = "select * from " + table;
+        var query = "select b.*, st_x(e.the_geom) as longitud, st_y(e.the_geom) as latitud from " + table;
+		query += " b INNER JOIN estacions e ON e.estacio=b.estacio";
         if(station) {
-            query += " where estacio='"+station+"'";
+            query += " where b.estacio='"+station+"'";
         }
         var service = sqlAPI + "q=" + encodeURIComponent(query) + "&format=" + format;
 
