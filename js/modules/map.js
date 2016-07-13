@@ -152,14 +152,13 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 		 var params = legend.getAllParamNames();
 		 fields = fields.concat(params);
 		 
-		 var fieldsTemplate = '<a class="figure">> Gràfica i dades</a></p>';
-		 fieldsTemplate += '<h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}}</p>';
+		 var fieldsTemplate = '<h4>data</h4><p>{{data}}</p><h4>municipi</h4><p>{{tm}}</p><h4>estacio</h4><p>{{estacio}}</p>';
 		 
 		 for(var i=0 ; i < params.length; i ++) {
 			fieldsTemplate += '<h4>' + params[i]+ '</h4><p>{{' + params[i] + '}}</p>';
 		 }
 		 
-		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} ' + fieldsTemplate + '</div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
+		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="grafic-btn"><img src="/img/grafic-white.svg" style="margin-right: 5px; width: 20px;"><a class="figure">Gràfica i dades</a></div><div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} ' + fieldsTemplate + '</div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
 		 
 	     cdb.vis.Vis.addInfowindow(map, cartoSubLayer, fields, {
 			infowindowTemplate: template

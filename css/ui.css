@@ -180,3 +180,17 @@ div.cartodb-tooltip {
 	min-width: 50px !important;
 	z-index: 5 !important;
 }
+
+.grafic-btn{
+    background: #008080;
+    padding: 5px 12px;
+}
+
+
+a.figure{
+    color: #fff !important;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 8pt;
+}
