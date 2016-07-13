@@ -1,27 +1,28 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
+ * @author Pau Fortuño <pfortuno@ub.edu>
  */
 define(['cartodb'], function() {
     "use strict";
     
     var amoniLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (amoni)",
+        title: "Amoni",
         data: [
           { name: "Aigües netes", value: "#0080ff" },
-          { name: "Toxicitat", value: "#229A00" },
-          { name: "Toxicitat pH alt", value: "#FFCC00" },
+          { name: "Risc de toxicitat", value: "#229A00" },
+          { name: "Toxicitat si pH alt", value: "#FFCC00" },
           { name: "Toxicitat elevada", value: "#FF6600" },
           { name: "Toxicitat aguda", value: "#B81609" }
         ]
     });
     
     var cabalLegend = new cdb.geo.ui.Legend.Bubble({
-              title: "Llegenda (cabal)",
+              title: "Cabal",
               min: 1, max: 150, color: "#5CA2D1"
             });
         
     var condLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (cond)",
+        title: "Conductivitat",
         data: [
           { name: "Molt mineralitzades", value: "#B81609" },
           { name: "Mitjanament mineral.", value: "#FFCC00" },
@@ -30,47 +31,47 @@ define(['cartodb'], function() {
     });
     
     var ecostLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (ecost)",
+        title: "Estat Ecològic (ECOSTRIMED)",
         data: [
-          { name: "Molt bona", value: "#5CA2D1" },
-          { name: "Bona", value: "#33a02c" },
-          { name: "Moderada", value: "#FFCC00" },
+          { name: "Molt bo", value: "#5CA2D1" },
+          { name: "Bo", value: "#33a02c" },
+          { name: "Moderat", value: "#FFCC00" },
           { name: "Mediocre", value: "#FF6600" },
-          { name: "Pèssima", value: "#B81609" }
+          { name: "Pèssim", value: "#B81609" }
         ]
     });
     
     var nitratsLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (nitrats)",
+        title: "Nitrats",
         data: [
           { name: "Aigües netes", value: "#0080ff" },
-          { name: "Risc eutrofització", value: "#FFCC00" },
+          { name: "Risc d'eutrofització", value: "#FFCC00" },
           { name: "Aigües contaminades", value: "#B81609" }
         ]
     });
     
     var nitritsLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (nitrits)",
+        title: "Nitrits",
         data: [
           { name: "Aigües netes", value: "#0080ff" },
-          { name: "Risc tòxics", value: "#FFCC00" },
+          { name: "Risc de toxicitat", value: "#FFCC00" },
           { name: "Aigües contaminades", value: "#B81609" }
         ]
     });
     
     var fosfatsLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (fosfats)",
+        title: "Fosfats",
         data: [
           { name: "Aigües netes", value: "#0080ff" },
-          { name: "Lleugera eutrofització", value: "#229A00" },
-          { name: "Creixements vegetals", value: "#FFCC00" },
+          { name: "Lleu eutrofització", value: "#229A00" },
+          { name: "Eutrofització mitja", value: "#FFCC00" },
           { name: "Aigües eutrofitzades", value: "#FF6600" },
           { name: "Molt eutrofitzades", value: "#B81609" }
         ]
     });
     
     var ihfLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (IHF)",
+        title: "Index d'Hàbitat Fluvial (IHF)",
         data: [
           { name: "Hàbitat empobrit", value: "#B81609" },
           { name: "Hàb. amb deficiències", value: "#FFCC00" },
@@ -79,7 +80,7 @@ define(['cartodb'], function() {
     });
     
     var qbrLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (QBR)",
+        title: "Qualitat Bosc de Ribera (QBR)",
         data: [
           { name: "Molt bona", value: "#0080ff" },
           { name: "Bona", value: "#229A00" },
@@ -90,7 +91,7 @@ define(['cartodb'], function() {
     });
     
     var IBMWPLegend = new cdb.geo.ui.Legend.Custom({
-        title: "Llegenda (IBMWP)",
+        title: "Qualitat Biològica (IBMWP)",
         data: [
           { name: "Molt bona", value: "#5CA2D1" },
           { name: "Bona", value: "#33a02c" },
