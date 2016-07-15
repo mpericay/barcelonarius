@@ -160,13 +160,13 @@ define(['cartodb'], function() {
         },
         'ibmwp': {
             cdbLegend: IBMWPLegend,
-            cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ibmwp_rang=1] {   marker-fill: #3E7BB6;} #estacions [ibmwp_rang=2] {   marker-fill: #33a02c;} #estacions [ibmwp_rang=3] {   marker-fill: #FFCC00;} #estacions [ibmwp_rang=4] {   marker-fill: #FF6600;} #estacions [ibmwp_rang=5] {   marker-fill: #B81609;} #estacions [ibmwp_rang=-1] {   marker-fill: #9b9b9b;} #estacions [ibmwp_rang=null] {   marker-fill: #FFFFFF;}',
+            cartoCSS: '#estacions{ marker-fill-opacity: 0.8; marker-line-color: #FFF; marker-line-width: 1; marker-line-opacity: 1; marker-width: 10; marker-fill: #b7b7b7; marker-allow-overlap: true;} #estacions [ibmwp_rang=1] {   marker-fill: #3E7BB6;} #estacions [ibmwp_rang=2] {   marker-fill: #33a02c;} #estacions [ibmwp_rang=3] {   marker-fill: #FFCC00;} #estacions [ibmwp_rang=4] {   marker-fill: #FF6600;} #estacions [ibmwp_rang=5] {   marker-fill: #B81609;} #estacions [ibmwp_rang=-1] {   marker-fill: #9b9b9b;} #estacions [ibmwp_rang=null] {   marker-fill: #BBBBBB;}',
             name: "IBMWP",
             group: "Ind. biològics"
         },
         'ecostrimed': {
             cdbLegend: ecostLegend,
-            cartoCSS: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 12;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #FFFFFF;   }  ',
+            cartoCSS: '#estacions { marker-fill-opacity: 0.9; marker-line-color: #FFF;  marker-line-width: 1;  marker-line-opacity: 1;      marker-placement: point;      marker-type: ellipse;      marker-width: 12;      marker-allow-overlap: true;   }      #estacions[ecostrimed=1] {      marker-fill: #5CA2D1;   }   #estacions[ecostrimed=2] {      marker-fill: #33a02c;   }   #estacions[ecostrimed=3] {      marker-fill: #FFCC00;   }   #estacions[ecostrimed=4] {      marker-fill: #FF6600;   }   #estacions[ecostrimed=5] {      marker-fill: #B81609;   }   #estacions[ecostrimed=null] {      marker-fill: #BBBBBB;   }  ',
             name: "Ecostrimed",
             group: "Ind. biològics",
             maxvalue: 6
