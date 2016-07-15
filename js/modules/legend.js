@@ -40,7 +40,7 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
         switcher.onAdd = function(map) {
             var combolegend = L.DomUtil.create( "div", "combolegend");
             //prevent mousewheel to zoom on map
-            disableEvent(combolegend, 'mousewheel');
+            disableEvent(combolegend, 'mousewheel DOMMouseScroll MozMousePixelScroll');
             
             var combo = L.DomUtil.create( "div", "cssSelector", combolegend);
             var sel =  L.DomUtil.create( "select", "form-control dropup", combo );
