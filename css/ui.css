@@ -46,16 +46,13 @@ h3 {
     background-color: #fff;
     border-radius: 4px;
     bottom: 20px;
-    left: 0;
-    margin-left: 5%;
-    margin-right: 5%;
+    right: 0;
+    margin-right: 10px;
     padding: 15px 30px;
     position: absolute;
-    width: 90%;
 }
 
 .slider {
-	width: 100% !important;
 	margin: 0 !important;
 }
 

@@ -5,7 +5,7 @@ define(['params', 'cartodb', 'select'], function(paramsFile) {
     "use strict";
     
     var legendDiv;
-    var activeParam = 'ecostrimed';
+    var activeParam = 'eco_points_text';
     var params = paramsFile.getParams();
     
     var createLegend = function(sym, parent){
