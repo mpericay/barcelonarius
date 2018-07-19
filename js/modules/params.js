@@ -17,13 +17,13 @@ define(['cartodb'], function() {
         ]
     });
     
-    var hidroLegend = new cdb.geo.ui.Legend.Custom({
+    var hidroLegend = new cdb.geo.ui.Legend.Category({
         title: "Calidad hidrológica (a partir 2017-18)",
         data: [
-          { name: "Buena", value: "#33a02c" },
-          { name: "Alterada", value: "#FFCC00" },
-          { name: "Pésima", value: "#B81609" },
-          { name: "Datos anteriores", value: "#b3b3b3" }
+          { name: "Buena", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084810v_good.png)" },
+          { name: "Alterada", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084836x_bad.png)" },
+          { name: "Pésima", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084824x_moderate.png)" },
+          { name: "No evaluada", value: "#b3b3b3" }
         ]
     });
     
