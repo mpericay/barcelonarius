@@ -30,9 +30,9 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 	}).addTo(map);
 	    
 	var baseLayers = {
-	    "Topogràfic": positron,
-	    "Ortofotografia": orto,
-		"Terreny": terrain
+	    "Mapa": positron,
+	    "Ortofoto": orto,
+		"Terreno": terrain
 	};
 	
 	var sqlAPI = "https://ub.cartodb.com/api/v2/sql?";
