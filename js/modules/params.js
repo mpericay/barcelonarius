@@ -21,8 +21,8 @@ define(['cartodb'], function() {
         title: "Calidad hidrológica (a partir 2017-18)",
         data: [
           { name: "Buena", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084810v_good.png)" },
-          { name: "Alterada", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084836x_bad.png)" },
-          { name: "Pésima", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084824x_moderate.png)" },
+          { name: "Alterada", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084824x_moderate.png)" },
+          { name: "Pésima", value: "url(https://s3.amazonaws.com/com.cartodb.users-assets.production/production/ub/assets/20180611084836x_bad.png)" },
           { name: "No evaluada", value: "#b3b3b3" }
         ]
     });
