@@ -12,6 +12,7 @@ define(['cartodb'], function() {
           { name: "Buena", value: "#33a02c" },
           { name: "Moderada", value: "#FFCC00" },
           { name: "Mala", value: "#FF6600" },
+          { name: "Pésima", value: "#B81609" },
           { name: "El agua no fluye", value: "#9b6f51" },
           { name: "No evaluada", value: "#b3b3b3" }
         ]
