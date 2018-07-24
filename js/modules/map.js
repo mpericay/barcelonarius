@@ -135,7 +135,7 @@ define(['legend', 'timeslider', 'chart', 'cartodb', 'bootstrap'], function(legen
 	  user_name: 'ub',
 	  type: 'cartodb',
 	  sublayers: [{
-	    sql: sql + buildYearWhere(2015),
+	    sql: sql + buildYearWhere(timeslider.getLastYear()),
 	    cartocss: legend.getActiveParam().cartoCSS,
         interactivity: 'cartodb_id'
 	  }]

@@ -82,10 +82,16 @@ define(['slider'], function() {
 		},
 		{
 			year: '2015'
+		},
+		{
+			year: '2016'
+		},
+		{
+			year: '2017'
 		}
 	];
 	
-	var tickArray = [0, 6, 12, 18, 24];
+	var tickArray = [0, 8, 14, 20, 26];
 	
 	var tickPositions = [];
 	var tickLabels = [];
@@ -136,7 +142,10 @@ define(['slider'], function() {
 	return {
        create: function(map, callback) {
        		return create(map, callback);
-       }
+       },
+	   getLastYear: function() {
+			return parseInt(moments[moments.length-1].year);
+	   }
 	};
 	
 });
