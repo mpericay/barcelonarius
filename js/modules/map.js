@@ -1,7 +1,7 @@
 /**
  * @author Martí Pericay <marti@pericay.com>
  */
-define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timeslider) {
+define(['legend', 'timeslider', 'i18n', 'cartodb', 'bootstrap'], function(legend, timeslider, i18n) {
 	
 	var map = L.map('map', {
 		center: [40, 0],
@@ -30,9 +30,9 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 	}).addTo(map);
 	    
 	var baseLayers = {
-	    "Mapa": positron,
-	    "Ortofoto": orto,
-		"Terreno": terrain
+	    "Map": positron,
+	    "Ortophoto": orto,
+		"Terrain": terrain
 	};
 	
 	var sqlAPI = "https://ub.cartodb.com/api/v2/sql?";
@@ -120,7 +120,7 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		 var params = legend.getAllParamNames();
 		 fields = fields.concat(params);
 		 
-		 var fieldsTemplate = '<h4>data</h4><p>{{data}}</p><h4>Régimen hidrológico</h4><p>{{regimen_hidrologico}}</p><h4>Estado acuático</h4><p>{{estado_aquatico}}</p><h4>Calidad hidrológica</h4><p>{{water_quality_points_text}}</p><h4>Calidad hidromorfológica</h4><p>{{hidro_points_text}}</p><h4>Calidad biológica</h4><p>{{bio_points_text}}</p><h4>Estado ecológico</h4><p>{{eco_points_text}}</p>';
+		 var fieldsTemplate = '<h4>'+i18n.t('Date')+'</h4><p>{{data}}</p><h4>'+i18n.t('Hidrologic status')+'</h4><p>{{regimen_hidrologico}}</p><h4>'+i18n.t('Aquatic status')+'</h4><p>{{estado_aquatico}}</p><h4>'+i18n.t('Hidrologic quality')+'</h4><p>{{water_quality_points_text}}</p><h4>'+i18n.t('Hidromorphologic quality')+'</h4><p>{{hidro_points_text}}</p><h4>'+i18n.t('Biologic quality')+'</h4><p>{{bio_points_text}}</p><h4>'+i18n.t('Ecologic status')+'</h4><p>{{eco_points_text}}</p>';
 		 
 		 var template = '<div class="cartodb-popup header with-image v2" data-cover="true"> <a href="#close" class="cartodb-popup-close-button close">x</a> <div class="cartodb-popup-header"> <div class="cover"> <div id="spinner"></div> <div class="image_not_found"> <i></i> <a href="#map" class="help">Non-valid picture URL</a></div>  <div class="shadow"></div> </div> </div> <div class="cartodb-popup-content-wrapper"> <div class="cartodb-popup-content"> {{#content.fields}} <div class="order{{index}}"> {{#index}} {{#title}}<h4>{{title}}</h4>{{/title}} {{#value}} <p>{{{ value }}}</p> {{/value}} {{^value}} <p class="empty">null</p> {{/value}} {{/index}} </div> {{/content.fields}} ' + fieldsTemplate + '</div> </div> <div class="cartodb-popup-tip-container"></div> </div>';
 		 
@@ -140,6 +140,7 @@ define(['legend', 'timeslider', 'cartodb', 'bootstrap'], function(legend, timesl
 		 //layers control
 		 var layersControl = L.control.layers(baseLayers, null).addTo(map);
 		 addExtraLayers(layersControl);
+		 i18n.translateDocTree();
 
      }).on('error', function(err) {
             console.log('cartoDBerror: ' + err);

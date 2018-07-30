@@ -1,0 +1,94 @@
+{
+	"Languages": {
+		"es": "Idiomas",
+		"ca": "Idiomes"	
+	},
+	"Map": {
+		"es": "Mapa",
+		"ca": "Mapa"
+		},
+	"Ortophoto": {
+		"es": "Ortofoto",
+		"ca": "Ortofoto"
+	},
+	"Map": {
+		"es": "Mapa",
+		"ca": "Mapa"
+	},
+	"Terrain": {
+		"es": "Terreno",
+		"ca": "Terreny"
+	},
+	"Date": {
+		"es": "Fecha",
+		"ca": "Data"	
+	},
+	"Ecologic quality": {
+		"es": "Calidad ecológica",
+		"ca": "Qualitat ecològica"
+	},
+	"Hidrologic quality": {
+		"es": "Calidad hidrológica",
+		"ca": "Qualitat hidrològica"
+	},
+	"Hidrologic status": {
+		"es": "Régimen hidrológico",
+		"ca": "Règim hidrològic"	
+	},
+	"Ecologic status": {
+		"es": "Régimen ecológico",
+		"ca": "Règim ecològic"	
+	},	
+	"Aquatic status": {
+		"es": "Estado acuático",
+		"ca": "Estat aquàtic"	
+	},
+	"Hidromorphologic quality": {
+		"es": "Calidad hidromorfológica",
+		"ca": "Qualitat hidromorfològica"
+	},
+	"Biologic quality": {
+		"es": "Calidad biológica",
+		"ca": "Qualitat biològica"
+	},
+	"Ecologic status": {
+		"es": "Estado ecológico",
+		"ca": "Estat ecològic"	
+	},
+	"Legend": {
+		"es": "Leyenda",
+		"ca": "Llegenda"	
+	},	
+	"Very good": {
+		"es": "Muy buena",
+		"ca": "Molt bona"	
+	},	
+	"Good": {
+		"es": "Buena",
+		"ca": "Bona"	
+	},
+	"Moderate": {
+		"es": "Moderada",
+		"ca": "Moderada"	
+	},
+	"Bad": {
+		"es": "Mala",
+		"ca": "Dolenta"	
+	},
+	"Very bad": {
+		"es": "Pésima",
+		"ca": "Pèssima"	
+	},
+	"Water not flowing": {
+		"es": "El agua no fluye",
+		"ca": "L'aigua no flueix"	
+	},
+	"No data": {
+		"es": "No evaluada",
+		"ca": "No evaluada"	
+	},
+	"Altered": {
+		"es": "Alterada",
+		"ca": "Alterada"	
+	}
+}
