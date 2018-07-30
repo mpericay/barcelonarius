@@ -91,7 +91,7 @@ define(['slider'], function() {
 		}
 	];
 	
-	var tickArray = [0, 8, 14, 20, 26];
+	var tickArray = [0, 7, 13, 19, 26];
 	
 	var tickPositions = [];
 	var tickLabels = [];
